@@ -9,6 +9,7 @@ import client.Parser;
 import common.User;
 import dao.AccountDao;
 import dao.UserDao;
+import service.AccountService;
 import service.Printer;
 import service.UserService;
 
@@ -23,7 +24,7 @@ public class Main {
 		// instantiate new scanner
 		Scanner sc = new Scanner(System.in);
 		UserService us = new UserService();
-		UserDao udao = new UserDao();
+		AccountService as = new AccountService();
 		User currentUser = null;
 		// Prompt user to login or create an account
 		Printer.firstMenu();
@@ -51,7 +52,9 @@ public class Main {
 		
 		String check = currentUser.getUsername();
 		if(check != null) {
-			Parser.parseUserMenu(sc, us, currentUser);
+			while(b) {
+				Parser.parseUserMenu(sc, us, currentUser, as);				
+			}
 		}
 		
 		

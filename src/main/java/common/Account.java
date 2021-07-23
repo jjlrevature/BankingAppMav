@@ -2,23 +2,23 @@ package common;
 
 public class Account {
 	private boolean isApproved;
-	private double balance;
+	private int balance;
 	private String accounttName;
-	private User accountOwner;
+	private int accountOwner;
 	private double id;
 	
-	public Account(User user, String accountName) {
-		this.accountOwner = user;
+	public Account(int userid, String accountName) {
+		this.accountOwner = userid;
 		this.accounttName = accountName;
 		this.balance = 0;
 		this.isApproved = false;
 	}
 
-	public double getBalance() {
+	public int getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 
@@ -39,19 +39,19 @@ public class Account {
 		this.accounttName = actName;
 	}
 
-	public User getAccountOwner() {
+	public int getAccountOwner() {
 		return accountOwner;
 	}
 
-	public void setAccountOwner(User accountOwner) {
+	public void setAccountOwner(int accountOwner) {
 		this.accountOwner = accountOwner;
 	}
 	
-	public void actionDeposit(double amount) {
+	public void actionDeposit(int amount) {
 		this.balance = this.balance + amount;
 	}
 	
-	public void actionWithdrawl(double amount) {
+	public void actionWithdrawl(int amount) {
 		this.balance = this.balance - amount;
 	}
 

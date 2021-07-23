@@ -5,7 +5,7 @@ import java.util.List;
 public class User {
 	private String username;
 	private String password;
-	private double id;
+	private int id;
 	private ArrayList<Account> userAccounts = new ArrayList<Account>();
 	
 	
@@ -43,16 +43,17 @@ public class User {
 	}
 	
 	public Account createAccount(User user, String nickname) {
-		Account newAcc = new Account(user,nickname);
+		int j = this.id;
+		Account newAcc = new Account(j,nickname);
 		return newAcc;
 		
 	}
 
-	public double getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(double id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 }

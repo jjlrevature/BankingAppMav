@@ -61,80 +61,47 @@ public class UserDao {
 	}
 	
 	public User getUser(User user, Connection conn) throws SQLException {
-		String findUserCommand = "SELECT id,username,password,accounts FROM users WHERE password=? AND username=?";
+		String findUserCommand = "SELECT id,username,password FROM users WHERE password=? AND username=?";
+		String findAccounts = "SELECT nicname,accountowner,balance FROM accounts INNER JOIN users ON accounts.accountowner = users.id";
 		PreparedStatement pstmt = conn.prepareStatement(findUserCommand);
+		PreparedStatement pst = conn.prepareStatement(findAccounts);
 		String username = user.getUsername();
 		String password = user.getPassword();
-		//ArrayList<Account> userList = new ArrayList<Account>();
+		ArrayList<Account> userList = new ArrayList<Account>();
 		User currentUser = null;
+		int userId = 0;
 		try {
-			// Finds User in database
-			pstmt = conn.prepareStatement(findUserCommand);
+			// Finds User in database			
 			pstmt.setString(1, password);
 			pstmt.setString(2, username);
-			//java.sql.Array accountResults = null;
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				
-				ResultSetMetaData rsmd = rs.getMetaData();
-				int columnsNumber = rsmd.getColumnCount();
-				for (int i = 1; i <= columnsNumber; i++) {
-			        if (i > 1) System.out.print(",  ");
-			        String columnValue = rs.getString(i);
-			        System.out.print(columnValue + " " + rsmd.getColumnName(i));
-			    }
-			    System.out.println("");
-				
-				
-				
-				
+			while(rs.next()) {				
 				currentUser = new User(null,null);
-							
-				//accountResults = rs.getArray("accounts");
-				
-				
 				// set new user = database-user's data
 				currentUser.setUsername(rs.getString("username"));
 				currentUser.setPassword(rs.getString("password"));
-				currentUser.setId(rs.getDouble("id"));
-				//userList = createAccountObjects(accountResults, conn, currentUser);
-				//currentUser.setUserAccounts(userList);
+				currentUser.setId(rs.getInt("id"));
+				userId = rs.getInt("id");
 			}
-			
-			
-			// iterate through returned list of strings adding each to userList			
+			// Find accounts
+			ResultSet rss = pst.executeQuery();			
+			while(rss.next()) {
+				int k = rss.getInt("accountowner");
+				if (k == userId) {
+					int accOwner = rss.getInt("accountowner");
+					Account userAcc = new Account(accOwner, "placeholder");
+					userAcc.setActName(rss.getString("nicname"));
+					userAcc.setBalance(rss.getInt("balance"));
+					userList.add(userAcc);
+				}				
+			}
+			currentUser.setUserAccounts(userList);		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return currentUser;
 	}
 	
-//	private static ArrayList<Account> createAccountObjects(java.sql.Array accountInt, Connection conn, User user) throws SQLException {
-//		List<Integer> results = new ArrayList();
-//		
-//		PreparedStatement pstmtt = null;
-//		String findAccount = "SELECT accountOwner,accountName,balance FROM accounts WHERE id=?";
-//		pstmtt = conn.prepareStatement(findAccount);
-//		
-//		// for each account, get account data and populate new account obj, then add to arraylist
-//		for (int x = 0; x < accountInt.length; x++) {
-//			//int accId =  accountInt.get(x);
-//			//pstmtt.setDouble(1, accId);
-//			ResultSet rss = pstmtt.executeQuery();
-//			
-//			Account acc = new Account(user, "nicname");
-//			
-//			// assign values to new accounts object
-//			double newBal = rss.getDouble("balance");
-//			acc.setBalance(newBal);
-//			acc.setAccountOwner(user);
-//			
-//			results.add(acc);
-//			
-//		}
-//		return results;
-//	}
 	
 }

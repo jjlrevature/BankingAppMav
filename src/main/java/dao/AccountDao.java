@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
+import client.Input;
 import common.Account;
 import common.User;
+import service.Printer;
 
 // Data access object
 public class AccountDao {
@@ -25,47 +28,52 @@ public class AccountDao {
 		return conn;
 	}
 	
-	
-	public void addBalance(User user, Account acc, double deposit ) throws SQLException {
+	// Create
+	public void createAccount(User user, Connection conn, String nicname) throws SQLException {
 		PreparedStatement pstmt = null;
-		double balance = acc.getBalance();
-		double newBalance = balance + deposit;
-		String username = user.getUsername();
-		String accountOwner = acc.getAccountOwner().getUsername();
-		if(username == accountOwner) {
-			try {
-				String updateCommand = "UPDATE accounts " + "SET balance=? Where accountOwner=?";
-				pstmt = conn.prepareStatement(updateCommand);
-				pstmt.setDouble(1, newBalance);
-				pstmt.setString(2, accountOwner);
-				pstmt.executeUpdate();
-				conn.commit();				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
-		}		
+		String createUser = "INSERT INTO accounts (nicname,accountowner,balance) VALUES (?,?,?)";
+		int userId = user.getId();
+		try {
+			pstmt = conn.prepareStatement(createUser);
+			pstmt.setString(1, nicname);
+			pstmt.setInt(2, userId);
+			pstmt.setInt(3, 0);
+			pstmt.executeUpdate();
+			Printer.accountCreatedSuccesfully();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public void removeBalance(User user, Account acc, double deposit ) throws SQLException {
+	public void addBalance(User user, Account acc, int deposit ) throws SQLException {
 		PreparedStatement pstmt = null;
-		double balance = acc.getBalance();
-		double newBalance = balance - deposit;
-		String username = user.getUsername();
-		String accountOwner = acc.getAccountOwner().getUsername();
-		if(username == accountOwner) {
-			try {
-				String updateCommand = "UPDATE accounts " + "SET balance=? Where accountOwner=?";
-				pstmt = conn.prepareStatement(updateCommand);
-				pstmt.setDouble(1, newBalance);
-				pstmt.setString(2, accountOwner);
-				pstmt.executeUpdate();
-				conn.commit();				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
-		}		
+		String accNicname = acc.getActName();
+		try {
+			String updateCommand = "UPDATE accounts " + "SET balance=? WHERE nicname=?";
+			pstmt = conn.prepareStatement(updateCommand);
+			pstmt.setDouble(1, deposit);
+			pstmt.setString(2, accNicname);
+			pstmt.executeUpdate();	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}					
+	}
+	
+	public void removeBalance(User user, Account acc, int withdraw ) throws SQLException {
+		PreparedStatement pstmt = null;
+		String accNicname = acc.getActName();
+		try {
+			String updateCommand = "UPDATE accounts " + "SET balance=? WHERE nicname=?";
+			pstmt = conn.prepareStatement(updateCommand);
+			pstmt.setDouble(1, withdraw);
+			pstmt.setString(2, accNicname);
+			pstmt.executeUpdate();	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
 	}
 	
 }

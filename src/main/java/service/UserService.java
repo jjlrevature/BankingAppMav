@@ -16,9 +16,7 @@ public class UserService {
 	// Create
 		
 		public User createUser(User user) throws SQLException {
-			
 			udao.createUser(user,conn);
-			Printer.userCreatedSuccesfully();
 			return user;
 		}
 
