@@ -1,5 +1,6 @@
 package service;
 
+import common.User;
 
 public class Printer {
 	
@@ -35,5 +36,22 @@ public class Printer {
 	public static void confirmPassword() {
 		System.out.println("Please confirm your password");
 	}
-}
+	
+	public static void userCreatedSuccesfully() {
+		System.out.println("User account has been successfully created! Welcome to Xbank, you champion.");
+	}
+	
+	
+	public static void userMainMenu(User user) {
+		String username = user.getUsername();
+		System.out.println("Welcome " + username + ": Please choose an action\n"
+				+ "1) View Accounts\n"
+				+ "2) Open New Account");
+	}
 
+
+	public static void errorCreds() {
+		System.out.println("Error with input, please Enter username and password");
+	}
+	
+}

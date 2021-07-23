@@ -15,7 +15,7 @@ public class Input {
 		return new String[] {a,b};
 	}
 	
-	public static String string(Scanner sc) {
+	public static String getString(Scanner sc) {
 		String a = sc.next();
 		return a;
 	}

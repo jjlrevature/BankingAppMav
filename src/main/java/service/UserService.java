@@ -1,19 +1,35 @@
 package service;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.Account;
 import common.User;
 import dao.UserDao;
 
 public class UserService {
-	private UserDao user = new UserDao();
-	private Connection conn = user.connect();
 	
+		private UserDao udao = new UserDao();
+		Connection conn = udao.connect();
 	// Create
-		public void registerUser(User newUser) throws SQLException  {
-			UserDao.createUser(newUser,conn);
+		
+		public User createUser(User user) throws SQLException {
+			
+			udao.createUser(user,conn);
+			Printer.userCreatedSuccesfully();
+			return user;
 		}
+
+		public User getUser(User user) throws SQLException {
+			User currentUser = udao.getUser(user, conn);
+			return currentUser;
+		}
+		
+		public ArrayList<Account> getUserAccounts(User user) {
+			return user.getUserAccounts();
+		}
+		
+		
 }

@@ -5,6 +5,7 @@ public class Account {
 	private double balance;
 	private String accounttName;
 	private User accountOwner;
+	private double id;
 	
 	public Account(User user, String accountName) {
 		this.accountOwner = user;
@@ -52,6 +53,14 @@ public class Account {
 	
 	public void actionWithdrawl(double amount) {
 		this.balance = this.balance - amount;
+	}
+
+	public double getId() {
+		return id;
+	}
+
+	public void setId(double id) {
+		this.id = id;
 	}
 
 }

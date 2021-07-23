@@ -1,9 +1,11 @@
 package common;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 	private String username;
 	private String password;
+	private double id;
 	private ArrayList<Account> userAccounts = new ArrayList<Account>();
 	
 	
@@ -12,7 +14,10 @@ public class User {
 		this.password = password;		
 	}
 	
-	
+	public User(String[] credentials) {
+		this.username = credentials[0];
+		this.password = credentials[1];
+	}
 	
 	public String getUsername() {
 		return this.username;
@@ -37,4 +42,17 @@ public class User {
 		this.userAccounts = userAccounts;
 	}
 	
+	public Account createAccount(User user, String nickname) {
+		Account newAcc = new Account(user,nickname);
+		return newAcc;
+		
+	}
+
+	public double getId() {
+		return id;
+	}
+
+	public void setId(double id) {
+		this.id = id;
+	}
 }
