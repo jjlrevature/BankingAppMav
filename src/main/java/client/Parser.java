@@ -129,9 +129,7 @@ public class Parser {
 	
 	
 	public static void parseEmployeeMenu() {
-		Printer.employeeMenu();		}
+		Printer.employeeMenu();	
 	}
-
-
 	
-}
+}	
