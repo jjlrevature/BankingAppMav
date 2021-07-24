@@ -12,16 +12,15 @@ import dao.UserDao;
 public class UserService {
 	
 		private UserDao udao = new UserDao();
-		Connection conn = udao.connect();
 	// Create
 		
 		public User createUser(User user) throws SQLException {
-			udao.createUser(user,conn);
+			udao.createUser(user);
 			return user;
 		}
 
 		public User getUser(User user) throws SQLException {
-			User currentUser = udao.getUser(user, conn);
+			User currentUser = udao.getUser(user);
 			return currentUser;
 		}
 		

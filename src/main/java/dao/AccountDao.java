@@ -15,9 +15,9 @@ import service.Printer;
 // Data access object
 public class AccountDao {
 	
-	Connection conn = null;	
 	
-	public Connection connect() {
+	private static Connection connect() {
+		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","pOOkiebear2!");
 			System.out.println("Connectioned!");
@@ -29,12 +29,12 @@ public class AccountDao {
 	}
 	
 	// Create
-	public void createAccount(User user, Connection conn, String nicname) throws SQLException {
+	public void createAccount(User user, String nicname) throws SQLException {
 		PreparedStatement pstmt = null;
 		String createUser = "INSERT INTO accounts (nicname,accountowner,balance) VALUES (?,?,?)";
 		int userId = user.getId();
 		try {
-			pstmt = conn.prepareStatement(createUser);
+			pstmt = connect().prepareStatement(createUser);
 			pstmt.setString(1, nicname);
 			pstmt.setInt(2, userId);
 			pstmt.setInt(3, 0);
@@ -51,7 +51,7 @@ public class AccountDao {
 		String accNicname = acc.getActName();
 		try {
 			String updateCommand = "UPDATE accounts " + "SET balance=? WHERE nicname=?";
-			pstmt = conn.prepareStatement(updateCommand);
+			pstmt = connect().prepareStatement(updateCommand);
 			pstmt.setDouble(1, deposit);
 			pstmt.setString(2, accNicname);
 			pstmt.executeUpdate();	
@@ -66,7 +66,7 @@ public class AccountDao {
 		String accNicname = acc.getActName();
 		try {
 			String updateCommand = "UPDATE accounts " + "SET balance=? WHERE nicname=?";
-			pstmt = conn.prepareStatement(updateCommand);
+			pstmt = connect().prepareStatement(updateCommand);
 			pstmt.setDouble(1, withdraw);
 			pstmt.setString(2, accNicname);
 			pstmt.executeUpdate();	

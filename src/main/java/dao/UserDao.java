@@ -18,7 +18,7 @@ import service.Printer;
 
 public class UserDao {
 
-	public Connection connect() {
+	private static Connection connect() {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","pOOkiebear2!");
@@ -31,9 +31,9 @@ public class UserDao {
 	}
 	
 	// Read
-	static void queryIfUsernameExists(String str, Connection conn) throws SQLException {
+	static void queryIfUsernameExists(String str) throws SQLException {
 		Statement stmt = null;
-		stmt = conn.createStatement();
+		stmt = connect().createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT username FROM users Where username=?");
 	
 		while(rs.next()) {
@@ -43,13 +43,13 @@ public class UserDao {
 	}
 	
 	// Create
-	public void createUser(User user, Connection conn) throws SQLException {
+	public void createUser(User user) throws SQLException {
 		PreparedStatement pstmt = null;
 		String createUser = "INSERT INTO users (username,password) VALUES (?,?)";
 		String username = user.getUsername();
 		String password = user.getPassword();
 		try {
-			pstmt = conn.prepareStatement(createUser);
+			pstmt = connect().prepareStatement(createUser);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
 			pstmt.executeUpdate();
@@ -60,11 +60,11 @@ public class UserDao {
 		}
 	}
 	
-	public User getUser(User user, Connection conn) throws SQLException {
+	public User getUser(User user) throws SQLException {
 		String findUserCommand = "SELECT id,username,password FROM users WHERE password=? AND username=?";
 		String findAccounts = "SELECT nicname,accountowner,balance FROM accounts INNER JOIN users ON accounts.accountowner = users.id";
-		PreparedStatement pstmt = conn.prepareStatement(findUserCommand);
-		PreparedStatement pst = conn.prepareStatement(findAccounts);
+		PreparedStatement pstmt = connect().prepareStatement(findUserCommand);
+		PreparedStatement pst = connect().prepareStatement(findAccounts);
 		String username = user.getUsername();
 		String password = user.getPassword();
 		ArrayList<Account> userList = new ArrayList<Account>();

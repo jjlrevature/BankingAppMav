@@ -13,15 +13,13 @@ import dao.UserDao;
 
 public class AccountService {
 	private AccountDao currentAccount = new AccountDao();
-	Connection conn = currentAccount.connect();
-	private ArrayList<Account> currentUsersAccounts = new ArrayList<Account>();
 	// crud operations and find stuff methods go here
 	
 	// Create
 	public void createAccount(User newUser,Scanner sc) throws SQLException  {
 		Printer.accountNicname();
 		String nicname = Input.getString(sc);
-		currentAccount.createAccount(newUser,conn, nicname);
+		currentAccount.createAccount(newUser, nicname);
 	}	
 	
 	public void addBalance(User user, Account acc, int deposit) throws SQLException {

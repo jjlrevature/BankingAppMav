@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-	private String username;
-	private String password;
+	protected String username;
+	protected String password;
 	private int id;
 	private ArrayList<Account> userAccounts = new ArrayList<Account>();
 	

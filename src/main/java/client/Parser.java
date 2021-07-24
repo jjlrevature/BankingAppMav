@@ -11,15 +11,14 @@ import common.Employee;
 import common.User;
 import dao.UserDao;
 import service.AccountService;
+import service.EmployeeService;
 import service.Printer;
 import service.UserService;
 public class Parser {
 	
 	
 	public static User parseUserLogin( Scanner sc, UserService us) {
-		String[] creds = null;
-		Printer.askForLoginCreds();	
-		creds = Input.credentials(sc);		
+		String[] creds = gatherCredentials(sc);		
 		User ph = new User(creds);
 		
 		// check database if user exists
@@ -31,6 +30,20 @@ public class Parser {
 		}
 		return ph;
 
+	}
+	
+	public static Employee parseEmployeeLogin( Scanner sc, EmployeeService es) {
+		String[] creds = gatherCredentials(sc);
+		Employee currentEmployee = new Employee(creds);
+		return currentEmployee;
+		
+	}
+	
+	private static String[] gatherCredentials(Scanner sc) {
+		String[] creds = null;
+		Printer.askForLoginCreds();
+		creds = Input.credentials(sc);
+		return creds;
 	}
 	
 	public static User parseCreateUser(Scanner sc) {
@@ -45,10 +58,6 @@ public class Parser {
 		return newUser;
 	}
 	
-	public static Employee parseEmployeeLogin( Scanner sc) {
-		return null;
-		
-	}
 	
 	public static void parseUserMenu(Scanner sc, UserService us, User user, AccountService as) throws SQLException {
 		Printer.userMainMenu(user);
@@ -91,8 +100,6 @@ public class Parser {
 		case 4:
 			// exit
 			Main.b = false;
-			Printer.printExit();
-			
 			break;
 		}
 	}
@@ -120,6 +127,10 @@ public class Parser {
 		}
 	}
 	
+	
+	public static void parseEmployeeMenu() {
+		Printer.employeeMenu();		}
+	}
 
 
 	
