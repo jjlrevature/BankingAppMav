@@ -37,7 +37,8 @@ public class Main {
 		// Create new customer, user login, employee login
 		switch(i) {
 		case 1:
-			User existingUser = Parser.parseUserLogin(sc, us); 
+			User existingUser = null;
+			existingUser = Parser.parseUserLogin(sc, us); 		
 			currentUser = existingUser;
 			break;
 		case 2:
@@ -54,6 +55,7 @@ public class Main {
 			break;
 		}
 		
+		
 		// while menu loops for different users
 		switch(i) {
 		case 1:
@@ -65,7 +67,7 @@ public class Main {
 			while(currentEmp != null & b) {
 				Parser.parseEmployeeMenu();
 			}
-			break;
+			break;			
 		}
 		Printer.printExit();
 		sc.close();

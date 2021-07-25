@@ -75,15 +75,18 @@ public class UserDao {
 			pstmt.setString(1, password);
 			pstmt.setString(2, username);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {				
+			while(rs.next()) {	
+				if(rs.getString("username") != null) {					
 				currentUser = new User(null,null);
 				// set new user = database-user's data
 				currentUser.setUsername(rs.getString("username"));
 				currentUser.setPassword(rs.getString("password"));
 				currentUser.setId(rs.getInt("id"));
 				userId = rs.getInt("id");
+				}
 			}
 			// Find accounts
+						
 			ResultSet rss = pst.executeQuery();			
 			while(rss.next()) {
 				int k = rss.getInt("accountowner");
@@ -93,9 +96,10 @@ public class UserDao {
 					userAcc.setActName(rss.getString("nicname"));
 					userAcc.setBalance(rss.getInt("balance"));
 					userList.add(userAcc);
+					currentUser.setUserAccounts(userList);		
 				}				
 			}
-			currentUser.setUserAccounts(userList);		
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

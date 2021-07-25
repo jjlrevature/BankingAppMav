@@ -1,6 +1,5 @@
 package client;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,12 +8,12 @@ import main.Main;
 import common.Account;
 import common.Employee;
 import common.User;
-import dao.UserDao;
 import service.AccountService;
 import service.EmployeeService;
 import service.Printer;
 import service.UserService;
 public class Parser {
+	
 	
 	
 	public static User parseUserLogin( Scanner sc, UserService us) {

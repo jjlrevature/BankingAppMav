@@ -28,7 +28,7 @@ public class Printer {
 	}
 	
 	public static void errorCreds() {
-		System.out.println("Error with input, please Enter username and password");
+		System.out.println("Error with credentials, please Enter username and password");
 	}
 	// =================================================================================
 	// =========================	User Stuff		 ===================================
