@@ -22,13 +22,12 @@ public class Parser {
 		
 		// check database if user exists
 		try {
-			ph = us.getUser(ph);
+			ph = us.getCurrentUser(ph);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ph;
-
 	}
 	
 	public static Employee parseEmployeeLogin( Scanner sc, EmployeeService es) {
@@ -111,13 +110,13 @@ public class Parser {
 			// Deposit
 			Printer.depositAmount();
 			int deposit = Input.collectIntInput(sc);			
-			as.addBalance(user, acc, deposit);
+			as.addNewBalanceServ(user, acc, deposit);
 			break;
 		case 2:
 			// Withdraw
 			Printer.withdrawAmount();
 			int withdraw = Input.collectIntInput(sc);
-			as.removeBalance(user, acc, withdraw);
+			as.removeBalanceServ(user, acc, withdraw);
 			break;
 		case 3:
 			// Exit

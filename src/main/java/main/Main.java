@@ -51,7 +51,6 @@ public class Main {
 			break;
 		case 4:
 			b = false;
-			Printer.printExit();
 			break;
 		}
 		
