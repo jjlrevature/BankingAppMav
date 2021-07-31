@@ -14,10 +14,15 @@ public class User {
 		this.password = password;		
 	}
 	
+	public User(String username) {
+		this.username = username;
+	}
+	
 	public User(String[] credentials) {
 		this.username = credentials[0];
 		this.password = credentials[1];
 	}
+	
 	
 	public String getUsername() {
 		return this.username;
@@ -45,8 +50,7 @@ public class User {
 	public Account createAccount(User user, String nickname) {
 		int j = this.id;
 		Account newAcc = new Account(j,nickname);
-		return newAcc;
-		
+		return newAcc;		
 	}
 
 	public int getId() {

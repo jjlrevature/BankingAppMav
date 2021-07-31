@@ -3,13 +3,13 @@ package common;
 public class Account {
 	private boolean isApproved;
 	private int balance;
-	private String accounttName;
+	private String accountName;
 	private int accountOwner;
 	private double id;
 	
 	public Account(int userid, String accountName) {
 		this.accountOwner = userid;
-		this.accounttName = accountName;
+		this.accountName = accountName;
 		this.balance = 0;
 		this.isApproved = false;
 	}
@@ -25,18 +25,18 @@ public class Account {
 	public boolean isApproved() {
 		return isApproved;
 	}
-
+	
 	public void setApproved(boolean isApproved) {
 		// if(current user is employee)
 		this.isApproved = isApproved;
 	}
 
 	public String getActName() {
-		return accounttName;
+		return accountName;
 	}
 
 	public void setActName(String actName) {
-		this.accounttName = actName;
+		this.accountName = actName;
 	}
 
 	public int getAccountOwner() {
@@ -63,4 +63,8 @@ public class Account {
 		this.id = id;
 	}
 
+	public String toString() {
+		return "AccountName: " + this.getActName() + " isApproved: " + this.isApproved();
+	}
+	
 }

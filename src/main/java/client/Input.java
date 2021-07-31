@@ -15,9 +15,18 @@ public class Input {
 		return new String[] {a,b};
 	}
 	
+	public static String username(Scanner sc) {
+		String a =sc.next();
+		return a;
+	}
+	
 	public static String getString(Scanner sc) {
 		String a = sc.next();
 		return a;
 	}
 	
+	public static double transfer(Scanner sc) {		
+		double amount = sc.nextDouble();
+		return amount;
+	}
 }

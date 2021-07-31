@@ -3,34 +3,35 @@ package service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import common.Account;
+import common.Transfer;
 import common.User;
 import dao.UserDao;
 
 public class UserService implements UserDao {
 	
-		private UserDao udao;
-		
-		
 		
 		public User createNewUser(User user) throws SQLException {
-			udao.createUser(user);
+			createUser(user);
 			return user;
 		}
 
 		public User getCurrentUser(User user) throws SQLException {
-			User currentUser = udao.getUser(user);
+			User currentUser =  getUser(user);
 			return currentUser;
+			
 		}
 		
 		public ArrayList<Account> getUserAccounts(User user) {
 			return user.getUserAccounts();
 		}
+		
 		
 		
 		
@@ -40,7 +41,6 @@ public class UserService implements UserDao {
 			Connection conn = null;
 			try {
 				conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","pOOkiebear2!");
-				System.out.println("Connectioned!");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -63,11 +63,23 @@ public class UserService implements UserDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}			
+		}	
+		
+		public ArrayList<String> getAllUsers() throws SQLException {
+			ArrayList<String> users = new ArrayList<String>();
+			String getAllUsers = "SELECT username FROM users";
+			Connection conn = connect();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(getAllUsers);
+			while(rs.next()) {
+				users.add(rs.getString("username"));
+			}
+			return users;
+		}
 		
 		public User getUser(User user) throws SQLException {
 			String findUser = "SELECT id,username,password FROM users WHERE password=? AND username=?";
-			String findAccounts = "SELECT nicname,accountowner,balance FROM accounts INNER JOIN users ON accounts.accountowner = users.id";
+			String findAccounts = "SELECT nicname,accountowner,balance, isapproved FROM accounts INNER JOIN users ON accounts.accountowner = users.id";
 			PreparedStatement pstmt = connect().prepareStatement(findUser);
 			PreparedStatement pst = connect().prepareStatement(findAccounts);
 			String username = user.getUsername();
@@ -100,6 +112,7 @@ public class UserService implements UserDao {
 						Account userAcc = new Account(accOwner, "placeholder");
 						userAcc.setActName(rss.getString("nicname"));
 						userAcc.setBalance(rss.getInt("balance"));
+						userAcc.setApproved(rss.getBoolean("isapproved"));
 						userList.add(userAcc);
 						currentUser.setUserAccounts(userList);		
 					}				
@@ -110,6 +123,47 @@ public class UserService implements UserDao {
 				e.printStackTrace();
 			}
 			return currentUser;
+		}
+
+		public boolean checkForTransfer(User user) throws SQLException {
+			boolean b = false;
+			
+			for(int x = 0; x < user.getUserAccounts().size(); x++) {
+				String checkTransfers = "SELECT recipientaccid,amount FROM transfers WHERE recipientaccid=?";
+				double userAccId = user.getUserAccounts().get(x).getId();
+				PreparedStatement cT = connect().prepareStatement(checkTransfers);
+				cT.setDouble(1, userAccId);
+				ResultSet rs = cT.executeQuery();			
+				while(rs.next()) {
+					b = true;
+				}			
+			}
+			return b;
+		}
+
+		public ArrayList<Transfer> getTransfer(User user) throws SQLException {
+			ArrayList<Account> userAccs = user.getUserAccounts();
+			ArrayList<Transfer> transfers = new ArrayList<Transfer>();
+			for(int y = 0; y < userAccs.size(); y++) {
+				double userAccId = user.getUserAccounts().get(y).getId();				
+				String buildTransfers = "SELECT recipientaccid,amount FROM transfers WHERE recipientaccid=?";
+				PreparedStatement pending = connect().prepareStatement(buildTransfers);
+				pending.setDouble(1, userAccId);
+				ResultSet rs = pending.executeQuery();
+				while(rs.next()) {
+					for (int x = 0; x < userAccs.size(); x++) {	
+						if(userAccs.get(x).getId() == rs.getInt("recipientaccid")) {
+							Transfer newTransfer = new Transfer(generateAcc(),userAccs.get(x), rs.getDouble("amount"));
+							transfers.add(newTransfer);						
+						}
+					}
+				}
+			}
+			return transfers;
+		}
+
+		private Account generateAcc() {
+			return new Account(0,"placeholder");		
 		}
 		
 }
