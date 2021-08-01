@@ -64,6 +64,24 @@ public class Printer {
 				+ "4) Exit");
 	}
 	
+	public static void viewUserAccounts(ArrayList<Account> accounts, ArrayList<Transfer> transfers){
+		for (int x = 0; x < accounts.size(); x++) {
+			int h = x + 1;
+			Account acc = accounts.get(x);
+			String accNicname = acc.getActName();
+			double bal = acc.getBalance();
+			System.out.print(h + ") " + accNicname + " has a balance of: " + bal + ".");
+			if(transfers.size() > 0) {
+				for(int g = 0; g < transfers.size(); g++) {	
+					if(accounts.get(x).getId() == transfers.get(g).getRecipientAccId()) {
+						System.out.print("      ! Pending Transfer !");	
+					}
+				}
+			}				
+			System.out.println("\n");
+		}
+	}
+	
 	// =================================================================================
 	// =======================		Employees		====================================
 	// =================================================================================
@@ -146,13 +164,25 @@ public class Printer {
 		System.out.println("Transfer has failed, try again or contact an employee.");
 	}
 	
-	public static void youHaveATransfer(ArrayList<Transfer> arrayT) {
-		System.out.println("You have a transfer waiting!");
-		
+	public static void youHaveATransfer(ArrayList<Transfer> arrayT, User user) {
+		ArrayList<Account> accs = user.getUserAccounts();
+		System.out.println("\n");
+		for(int x = 0; x <arrayT.size(); x++) {
+			double accid = arrayT.get(x).getRecipientAccId();
+			for(int y = 0; y < accs.size(); y++) {
+				double userAccId = accs.get(y).getId();
+				if(userAccId == accid) {
+					System.out.println("You have a transfer waiting on account: " + accs.get(y).getActName() + ".");
+				}				
+			}			
+		}		
 	}
 	
 	public static void acceptFundsQ(Transfer transfer) {
-		System.out.println("Accept transfer of: " + transfer.getAmount());
+		System.out.println("Accept transfer of: $" + transfer.getAmount()
+		+ "\n1) Accept transfer"
+		+ "\n2) Do not accept transfer");
+		// add options of actions
 	}
 	
 	public static void sendTransferId() {

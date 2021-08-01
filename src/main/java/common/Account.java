@@ -2,7 +2,7 @@ package common;
 
 public class Account {
 	private boolean isApproved;
-	private int balance;
+	private double balance;
 	private String accountName;
 	private int accountOwner;
 	private double id;
@@ -14,11 +14,11 @@ public class Account {
 		this.isApproved = false;
 	}
 
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(int balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 

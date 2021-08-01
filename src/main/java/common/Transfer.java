@@ -6,7 +6,20 @@ public class Transfer {
 	Account senderAcc;
 	Account recipientAcc;
 	double amount;
+	int transferid;
 	
+	boolean isAccepted = false;
+	
+	public int getTransferid() {
+		return transferid;
+	}
+
+	public void setTransferid(int transferid) {
+		this.transferid = transferid;
+	}
+
+	
+
 	public Transfer(Account sender, Account recipient, double amount) {
 		this.senderAcc = sender;
 		this.recipientAcc = recipient;
@@ -15,6 +28,14 @@ public class Transfer {
 
 	public User getSender() {
 		return this.sender;
+	}
+	
+	public boolean isAccepted() {
+		return isAccepted;
+	}
+
+	public void setAccepted(boolean isAccepted) {
+		this.isAccepted = isAccepted;
 	}
 
 	public void setSender(User sender) {

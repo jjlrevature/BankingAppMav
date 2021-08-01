@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import client.Input;
 import client.Parser;
 import common.Employee;
@@ -20,16 +23,18 @@ public class Main {
 	
 	// variable to control do-while loop
 	public static boolean b = true;
+	private static final Logger logger = LogManager.getLogger(UserService.class);
 	
 	public static void main(String[] args) throws SQLException {
-		
 		// instantiate new scanner
+		
 		Scanner sc = new Scanner(System.in);
 		UserService us = new UserService();
 		AccountService as = new AccountService();
 		EmployeeService es = new EmployeeService();
 		User currentUser = null;
 		Employee currentEmp = null;
+		logger.info("Instantiation of initial variables.. complete.");
 		// Prompt user to login or create an account
 		Printer.firstMenu();
 		int i = Input.collectIntInput(sc);
@@ -39,9 +44,11 @@ public class Main {
 		case 1:			
 			User existingUser = Parser.parseUserLogin(sc, us); 		
 			currentUser = existingUser;
+			logger.info("User attempted to login");
 			break;
 		case 2:
 			currentEmp = Parser.parseEmployeeLogin(sc,es);
+			logger.info("Employee attempted to login");
 			break;
 		case 3: 
 			User newUser = Parser.parseCreateUser(sc);
@@ -57,11 +64,14 @@ public class Main {
 		// while menu loops for different users
 		switch(i) {
 		case 1:
+			logger.info("Displaying user menu");
 			while(currentUser != null & b) {
-				Parser.parseUserMenu(sc, us, currentUser, as);				
+				currentUser = Parser.parseUserReload(currentUser, us);
+				b = Parser.parseUserMenu(sc, us, currentUser, as);				
 			}
 			break;
 		case 2:
+			logger.info("Displaying employee menu");
 			while(currentEmp != null & b) {
 				Parser.parseEmployeeMenu(sc,us,as,currentEmp);
 			}

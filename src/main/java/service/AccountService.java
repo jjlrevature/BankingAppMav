@@ -1,12 +1,20 @@
 package service;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.Scanner;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.DriverManager;
 
 import client.Input;
@@ -17,6 +25,7 @@ import dao.AccountDao;
 import dao.UserDao;
 
 public class AccountService implements AccountDao {
+	private static final Logger logger = LogManager.getLogger(UserService.class);
 	
 	
 	// Called methods
@@ -24,19 +33,25 @@ public class AccountService implements AccountDao {
 		Printer.accountNicname();
 		String nicname = Input.getString(sc);
 		Account currentAccount = createAccountQ(newUser, nicname);
+		logger.info("new account created");
 		return currentAccount;
 	}	
 	
-	public void addNewBalanceServ(User user, Account acc, int deposit) throws SQLException {
-		int newBalance = acc.getBalance() + deposit;
-		if(newBalance > 0) {
-			addBalance(user, acc, newBalance);
+	public void addNewBalanceServ(User user, Account acc, double deposit) throws SQLException {
+		double newBalance = acc.getBalance() + deposit;
+		if(newBalance > 0.0) {
+			try {
+				addBalance(user, acc, newBalance);
+			} catch (FileNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			acc.setBalance(newBalance);			
 		}
 	}
 	
-	public void removeBalanceServ(User user, Account acc, int withdraw) throws SQLException {
-		int newBalance = acc.getBalance() - withdraw; 
+	public void removeBalanceServ(User user, Account acc, double withdraw) throws SQLException {
+		double newBalance = acc.getBalance() - withdraw; 
 		if(newBalance > 0) {
 			removeBalance(user, acc, newBalance);
 			acc.setBalance(newBalance);			
@@ -47,17 +62,25 @@ public class AccountService implements AccountDao {
 
 	
 	//============== From Interface ===============
-	public Connection connect() {
+	public Connection connect() throws FileNotFoundException {
+		logger.info("Connection method invoked from AccountService");
 		Connection conn = null;
+		String configLocation = "F:/Revature/txt_files/Project0-config.properties";
 		try {
-			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","pOOkiebear2!");
+			FileInputStream fis = new FileInputStream(configLocation);
+			Properties props = new Properties();
+			props.load(fis);
+			conn = DriverManager.getConnection(props.getProperty("db_url",props.getProperty("db_user", props.getProperty("db_pass"))));
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}			
 		return conn;
 	}
 	
-	public void addBalance(User user, Account acc, double deposit ) throws SQLException {
+	public void addBalance(User user, Account acc, double deposit ) throws SQLException, FileNotFoundException {
 		PreparedStatement pstmt = null;
 		String accNicname = acc.getActName();
 		try {
@@ -68,7 +91,8 @@ public class AccountService implements AccountDao {
 			pstmt.executeUpdate();	
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}					
+		}
+		logger.info("balance added to account");
 	}
 
 	public Account createAccountQ(User user, String nicname) throws SQLException {
@@ -84,6 +108,9 @@ public class AccountService implements AccountDao {
 			Printer.accountCreatedSuccesfully();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		Account acc = new Account(user.getId(),nicname);
 		return acc;
@@ -91,29 +118,20 @@ public class AccountService implements AccountDao {
 	
 	public void removeBalance(User user, Account acc, double withdraw ) throws SQLException {
 		PreparedStatement pstmt = null;
-		PreparedStatement balCheck = null;
 		String accNicname = acc.getActName();
-		String balCheckStr = "SELECT balance FROM accounts WHERE id=?";
 		String updateCommand = "UPDATE accounts " + "SET balance=? WHERE nicname=?";
-		int accId = (int) acc.getId();
-		int currentAccBal = 0;
-		try {			
-			balCheck = connect().prepareStatement(balCheckStr);
-			balCheck.setInt(1, accId);
-			ResultSet rs = balCheck.executeQuery();
-			while(rs.next()) {
-				currentAccBal = rs.getInt("balance");
-				double newTotal = currentAccBal - withdraw;
-				if(newTotal > 0) {
-					pstmt = connect().prepareStatement(updateCommand);
-					pstmt.setDouble(1, withdraw);
-					pstmt.setString(2, accNicname);
-					pstmt.executeUpdate();
-				}
-			}
+		try {	
+			pstmt = connect().prepareStatement(updateCommand);
+			pstmt.setDouble(1, withdraw);
+			pstmt.setString(2, accNicname);
+			pstmt.executeUpdate();			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		logger.info("balance removed from acc");		
 	}
 
 //	public Account createAccount(User user, String nicname) throws SQLException {
@@ -123,7 +141,13 @@ public class AccountService implements AccountDao {
 	public ArrayList<Account> getAllAccts(User user) throws SQLException {
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		String getAllAccts = "SELECT id,isapproved FROM accounts WHERE isapproved=false";
-		Statement stmt = connect().createStatement();
+		Statement stmt = null;
+		try {
+			stmt = connect().createStatement();
+		} catch (FileNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ResultSet rs = stmt.executeQuery(getAllAccts);
 		while(rs.next()) {
 			Account userAcc = new Account(user.getId(), "placeholder");
@@ -131,6 +155,7 @@ public class AccountService implements AccountDao {
 			userAcc.setBalance(rs.getInt("balance"));
 			accounts.add(userAcc);
 		}
+		logger.info("got all accounts");
 		return accounts;
 	}
 
@@ -141,19 +166,26 @@ public class AccountService implements AccountDao {
 		try {
 			appAcc = connect().prepareStatement(action);
 			appAcc.setInt(1, accId);
+			logger.info("account approved");
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
 	
-	public void transferFunds(User user, double amount, Account acc) throws SQLException {
-		Transfer transfer = new Transfer(acc, generateAcc(),amount);
+	public void transferFunds(User user, double amount, Account acc, int recipId) throws SQLException {
+		Transfer transfer = new Transfer(acc, generateAcc(recipId),amount);
+		boolean g = false;
+		transfer.setAccepted(g);
 		User sender = transfer.getSender();
 		Account senderAcc = transfer.getSenderAcc();
 		if(senderAcc.getBalance() - amount > 0) {
 			removeBalance(sender,senderAcc,amount);
 			addToTransferTable(transfer);
 			Printer.transferSend();
+			logger.info("funds transferred");
 		} else {
 			Printer.transferFail();
 		}
@@ -163,9 +195,21 @@ public class AccountService implements AccountDao {
 		User recipient = transfer.getRecipient();
 		Account recipAcc = transfer.getRecipientAcc();
 		double amount = transfer.getAmount();
+		int tId = transfer.getTransferid();
 		if(recipAcc.getBalance() + amount > 0) {
-			addBalance(recipient,recipAcc,amount);
+			addNewBalanceServ(recipient,recipAcc,amount);
 			Printer.transferSuccess();
+			PreparedStatement update = null;
+			String updateStr = "UPDATE transfers SET isaccepted=true WHERE transferid=?";
+			try {
+				update = connect().prepareStatement(updateStr);
+				logger.info("funds accepted into account");
+			} catch (FileNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			update.setInt(1, tId);
+			update.executeUpdate();
 		}
 	}
 	
@@ -175,19 +219,26 @@ public class AccountService implements AccountDao {
 		double recipientAccId = transfer.getRecipientAccId();
 		double amount = transfer.getAmount();
 		try {
-			String updateCommand = "INSERT INTO transfers (senderaccid,recipientaccid,amount) VALUES (?,?,?)";
+			String updateCommand = "INSERT INTO transfers (senderaccid,recipientaccid,amount,isaccepted) VALUES (?,?,?,?)";
 			pstmt = connect().prepareStatement(updateCommand);
 			pstmt.setDouble(1, senderAccId);
 			pstmt.setDouble(2, recipientAccId);
 			pstmt.setDouble(3, amount);
+			pstmt.setBoolean(4, false);
 			pstmt.executeUpdate();	
+			logger.info("transfer added to transfer in database");
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
 
-	private Account generateAcc() {
-		return new Account(0,"placeholder");		
+	private Account generateAcc(int i) {
+		Account nAcc = new Account(0,"placeholder");
+		nAcc.setId(i);
+		return nAcc;
 	}
 
 }

@@ -1,12 +1,13 @@
 package dao;
 
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import common.User;
 
 public interface UserDao {
 
-	Connection connect();
+	Connection connect() throws FileNotFoundException;
 	
 	public void createUser(User user) throws SQLException;
 	

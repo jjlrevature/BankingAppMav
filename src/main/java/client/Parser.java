@@ -31,6 +31,18 @@ public class Parser {
 		return ph;
 	}
 	
+	public static User parseUserReload(User user, UserService us) {
+		User ph = user;		
+		// check database if user exists
+		try {
+			ph = us.getCurrentUser(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ph;
+	}
+	
 	public static Employee parseEmployeeLogin( Scanner sc, EmployeeService es) {
 		String[] creds = gatherCredentials(sc);
 		Employee currentEmployee = new Employee(creds);
@@ -57,17 +69,16 @@ public class Parser {
 	}
 	
 	
-	public static void parseUserMenu(Scanner sc, UserService us, User user, AccountService as) throws SQLException {
+	public static boolean parseUserMenu(Scanner sc, UserService us, User user, AccountService as) throws SQLException {
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		ArrayList<Transfer> transfers = new ArrayList<Transfer>();
 		Account acct = new Account(0, "placeholder");
 		boolean b = us.checkForTransfer(user);
-		System.out.println(b);
+		boolean exit = true;
 		accounts = user.getUserAccounts();	
 		if(b) {
-			transfers = us.getTransfer(user);
-			System.out.println(transfers);// is evaluating to null?
-			Printer.youHaveATransfer(transfers);
+			transfers = us.getTransfer(user);			
+			Printer.youHaveATransfer(transfers,user);
 		} else {
 			System.out.println("No Transfers");
 		}
@@ -76,27 +87,13 @@ public class Parser {
 		switch(i) {
 		case 1:
 			// view accounts
-			for (int x = 0; x < accounts.size(); x++) {
-				Account acc = accounts.get(x);
-				String accNicname = acc.getActName();
-				double bal = acc.getBalance();
-				System.out.println(accNicname + " has a balance of: " + bal + ".");
-			}
-			System.out.println("\n");
+			Printer.viewUserAccounts(accounts, transfers);			
 			break;
 		case 2:
 			// actions on account
 			//choose account
 			Printer.selectAccount();
-			int y = 1;
-			for (int x = 0; x < accounts.size(); x++) {
-				Account acc = accounts.get(x);
-				String accNicname = acc.getActName();
-				double bal = acc.getBalance();				
-				System.out.println( y + ") " + accNicname + " has a balance of: " + bal + ".");
-				y++;
-			}
-			System.out.println("\n");
+			Printer.viewUserAccounts(accounts, transfers);
 			int k = Input.collectIntInput(sc) - 1;
 			acct = accounts.get(k);
 			parseAccountActions(sc, acct,user, as,transfers);			
@@ -107,9 +104,10 @@ public class Parser {
 			break;
 		case 4:
 			// exit
-			Main.b = false;
+			exit = false;
 			break;
 		}
+		return exit;
 	}
 	
 	private static void parseAccountActions(Scanner sc, Account acc, User user, AccountService as, ArrayList<Transfer> transfers) throws SQLException {
@@ -136,7 +134,7 @@ public class Parser {
 						Printer.acceptFundsQ(transfers.get(x));
 						int k = Input.collectIntInput(sc);						
 						if(k == 1) 
-							as.acceptFunds(null);
+							as.acceptFunds(transfers.get(x));
 					}
 					
 				} else {
@@ -149,7 +147,7 @@ public class Parser {
 				int accId = Input.collectIntInput(sc);
 				Printer.sendTransferAmount();
 				double amount = Input.transfer(sc);
-				as.transferFunds(user, amount, acc);
+				as.transferFunds(user, amount, acc, accId);
 				break;
 			case 5:
 				// Exit
