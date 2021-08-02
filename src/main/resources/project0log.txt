@@ -333,3 +333,38 @@
 2021-08-02 08:41:34,189 INFO s.UserService [main] account approved
 2021-08-02 08:41:36,787 INFO s.UserService [main] Connection method invoked from AccountService
 2021-08-02 08:41:36,820 INFO s.UserService [main] got all accounts
+2021-08-02 08:50:26,892 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:50:32,101 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:50:32,102 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:50:33,977 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:50:34,106 INFO s.UserService [main] got all accounts
+2021-08-02 08:50:35,357 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:50:35,397 INFO s.UserService [main] account approved
+2021-08-02 08:50:37,945 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:50:37,987 INFO s.UserService [main] got all accounts
+2021-08-02 08:51:14,098 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:51:16,525 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:51:16,525 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:51:17,906 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:51:18,032 INFO s.UserService [main] got all accounts
+2021-08-02 08:51:19,458 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:51:19,504 INFO s.UserService [main] account approved
+2021-08-02 08:53:07,599 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:53:11,211 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:53:11,211 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:53:13,929 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:53:14,055 INFO s.UserService [main] got all accounts
+2021-08-02 08:53:15,441 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:53:15,475 INFO s.UserService [main] account approved
+2021-08-02 08:53:26,609 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:53:26,642 INFO s.UserService [main] got all accounts
+2021-08-02 08:53:30,372 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:56:36,087 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:56:39,278 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:56:39,278 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:56:41,153 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:56:41,282 INFO s.UserService [main] got all accounts
+2021-08-02 08:56:42,172 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:56:42,213 INFO s.UserService [main] account approved
+2021-08-02 08:56:55,034 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:56:55,082 INFO s.UserService [main] got all accounts

@@ -92,18 +92,18 @@ public class EmployeeService implements EmployeeDao{
 	}
 	
 	public void approveAccount(Account acc) {
-		String approval = "UPDATE accounts SET isapproved=? WHERE accid=? AND nicname=?";
+		String approval = "UPDATE accounts SET isapproved=? WHERE accid=? AND nicname=? AND isapproved IS NULL";
 		PreparedStatement pstmt = null;
 		
 		int accid = (int) acc.getId();
 		String nicname= acc.getActName();
-		System.out.println(acc.getAccountOwner());
 		try {
 			pstmt = connect().prepareStatement(approval);
 			pstmt.setBoolean(1, true);
 			pstmt.setInt(2, accid);
 			pstmt.setString(3, nicname);
 			pstmt.executeUpdate();
+			
 			Printer.accountUpdated();
 			logger.info("account approved");	
 			pstmt.close();
