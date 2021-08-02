@@ -368,3 +368,63 @@
 2021-08-02 08:56:42,213 INFO s.UserService [main] account approved
 2021-08-02 08:56:55,034 INFO s.UserService [main] Connection method invoked from AccountService
 2021-08-02 08:56:55,082 INFO s.UserService [main] got all accounts
+2021-08-02 09:42:55,041 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 09:43:05,520 INFO s.UserService [main] New User Created
+2021-08-02 09:43:05,520 INFO s.UserService [main] Displaying user menu
+2021-08-02 09:43:05,604 INFO s.UserService [main] user returned from getUser
+2021-08-02 09:43:05,606 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:40:45,367 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 10:41:23,179 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 10:41:35,352 INFO s.UserService [main] New User Created
+2021-08-02 10:41:35,353 INFO s.UserService [main] Displaying user menu
+2021-08-02 10:41:35,536 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:41:35,536 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:41:49,979 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 10:41:54,765 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:41:54,765 INFO s.UserService [main] User attempted to login
+2021-08-02 10:41:54,765 INFO s.UserService [main] Displaying user menu
+2021-08-02 10:41:54,860 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:41:55,074 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:41:55,328 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:42:01,144 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:42:01,432 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:42:01,674 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:42:20,681 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 10:42:20,773 INFO s.UserService [main] balance added to account
+2021-08-02 10:42:20,947 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:42:21,352 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:42:21,743 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:42:31,230 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:42:31,700 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:42:32,337 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:42:55,259 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 10:42:55,345 INFO s.UserService [main] balance removed from acc
+2021-08-02 10:42:55,346 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 10:42:55,408 INFO s.UserService [main] transfer added to transfer in database
+2021-08-02 10:42:55,409 INFO s.UserService [main] funds transferred
+2021-08-02 10:42:55,607 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:42:55,973 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:42:56,422 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:43:19,338 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 10:43:19,506 INFO s.UserService [main] balance added to account
+2021-08-02 10:43:19,506 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 10:43:19,576 INFO s.UserService [main] funds accepted into account
+2021-08-02 10:43:19,736 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:43:20,142 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:43:20,496 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:43:22,582 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:43:41,489 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 10:43:44,688 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:43:44,688 INFO s.UserService [main] User attempted to login
+2021-08-02 10:43:44,688 INFO s.UserService [main] Displaying user menu
+2021-08-02 10:43:44,769 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:43:45,015 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:43:45,237 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:43:46,845 INFO s.UserService [main] user returned from getUser
+2021-08-02 10:43:47,339 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 10:43:47,959 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 10:43:58,300 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 10:44:02,188 INFO s.UserService [main] Employee attempted to login
+2021-08-02 10:44:02,189 INFO s.UserService [main] Displaying employee menu
+2021-08-02 10:44:05,738 INFO s.UserService [main] got all Users
+2021-08-02 10:44:29,012 INFO s.UserService [main] user returned from getUser
