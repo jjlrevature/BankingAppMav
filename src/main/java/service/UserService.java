@@ -45,15 +45,14 @@ public class UserService implements UserDao {
 		
 		//============ From interface ============
 		
-		public Connection connect() throws FileNotFoundException {
-			logger.info("Connection method invoked from UserService");
+		public Connection connect() throws FileNotFoundException { 
 			Connection conn = null;
 			String configLocation = "F:/Revature/txt_files/Project0-config.properties";
 			try {
 				FileInputStream fis = new FileInputStream(configLocation);
 				Properties props = new Properties();
 				props.load(fis);
-				conn = DriverManager.getConnection(props.getProperty("db_url",props.getProperty("db_user", props.getProperty("db_pass"))));
+				conn = DriverManager.getConnection(props.getProperty("db_url"),props.getProperty("db_user"), props.getProperty("db_pass"));
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

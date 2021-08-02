@@ -160,7 +160,7 @@ public class Parser {
 	}
 	
 	
-	public static void parseEmployeeMenu(Scanner sc, UserService us, AccountService as, Employee e) throws SQLException {
+	public static void parseEmployeeMenu(Scanner sc, UserService us, AccountService as, Employee e, EmployeeService es) throws SQLException {
 		Printer.employeeMenu(e);	
 		int choice = Input.collectIntInput(sc);
 		User currentUser = null;
@@ -180,10 +180,25 @@ public class Parser {
 			break;
 		case 3:
 			// approve accounts
-			as.getAllAccts(currentUser);
+			//ArrayList<User> users = us.get
+			ArrayList<Account> allAccs = as.getAllAccts(currentUser);
+			Printer.printAccountsForApproval(allAccs);
+			int h = Input.collectIntInput(sc);
+			Account currentAcc = allAccs.get(h);
+			switch(h) {
+			case 1:
+				//Approve
+				es.approveAccount(currentAcc);
+				break;
+			case 2:
+				break; 
+			}
 			break;
 		case 4:
 			// view all logs
+			break;
+		case 5:
+			Main.b = false;
 			break;
 		}
 	}

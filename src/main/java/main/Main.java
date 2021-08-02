@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.appender.FileAppender;
 
 import client.Input;
 import client.Parser;
@@ -73,7 +74,7 @@ public class Main {
 		case 2:
 			logger.info("Displaying employee menu");
 			while(currentEmp != null & b) {
-				Parser.parseEmployeeMenu(sc,us,as,currentEmp);
+				Parser.parseEmployeeMenu(sc,us,as,currentEmp, es);
 			}
 			break;			
 		}

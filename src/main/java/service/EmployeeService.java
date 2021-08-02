@@ -13,6 +13,7 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import common.Account;
 import common.Employee;
 import common.User;
 import dao.EmployeeDao;
@@ -36,7 +37,7 @@ public class EmployeeService implements EmployeeDao{
 			FileInputStream fis = new FileInputStream(configLocation);
 			Properties props = new Properties();
 			props.load(fis);
-			conn = DriverManager.getConnection(props.getProperty("db_url",props.getProperty("db_user", props.getProperty("db_pass"))));
+			conn = DriverManager.getConnection(props.getProperty("db_url"),props.getProperty("db_user"), props.getProperty("db_pass"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -77,6 +78,7 @@ public class EmployeeService implements EmployeeDao{
 				currentEmp.setPassword(rs.getString("password"));
 				currentEmp.setId(rs.getInt("id"));
 				currentEmp.setEmployee(true);
+				logger.info("returned Employee from getEmployee()");
 			}
 			
 		} catch (SQLException e) {
@@ -84,7 +86,27 @@ public class EmployeeService implements EmployeeDao{
 			e.printStackTrace();
 		}
 
-		logger.info("returned Employee from getEmployee()");
 		return currentEmp;
 	}
+	
+	public void approveAccount(Account acc) {
+		String approval = "UPDATE accounts SET isapproved=true WHERE accid=?";
+		PreparedStatement pstmt = null;
+		double accid = acc.getId();
+		try {
+			pstmt = connect().prepareStatement(approval);
+			pstmt.setDouble(1, accid);
+			Printer.accountUpdated();
+			logger.info("account approved");			
+		} catch (FileNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
+	
 }

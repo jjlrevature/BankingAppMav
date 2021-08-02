@@ -91,7 +91,9 @@ public class Printer {
 		System.out.println("Welcome " + e.getUsername() + ", please select an option.\n"
 				+ "1) find all users\n"
 				+ "2) find user by username\n"
-				+ "3) view all logs");
+				+ "3) Approve Accounts\n"
+				+ "4) view all logs\n"
+				+ "5) Exit\n");
 	}
 	
 	public static void printAllUsers(ArrayList<String> all) {
@@ -113,6 +115,19 @@ public class Printer {
 	
 	public static void askForCredsForEmp() {
 		System.out.println("Please enter a username and password to search for.");
+	}
+	
+	public static void printAccountsForApproval(ArrayList<Account> allAccs) {
+		System.out.println("Please select an account to approve.");
+		for(int x = 0; x < allAccs.size(); x++) {
+			Account currentAcc = allAccs.get(x);
+			int j = x + 1;
+			System.out.println(j +") " + currentAcc.getActName() + "  for owner ID: " + currentAcc.getAccountOwner());
+		}
+	}
+	
+	public static void accountUpdated() {
+		System.out.println("Account updated.");
 	}
 	
 	// =================================================================================

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="ERROR">
+
+	<Appenders>
+		<File name="LogToFile" fileName="src/main/resources/project0log.txt">
+			<PatternLayout>
+				<pattern>%d %p %c{1.} [%t] %m%n</pattern>
+			</PatternLayout>	
+		</File>
+	</Appenders>
+	
+	
+	<Loggers>	
+		<Root level="info">
+			<AppenderRef ref="LogToFile"/>
+		</Root>	
+	</Loggers>
+
+</Configuration>

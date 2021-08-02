@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Scanner;
@@ -70,7 +71,7 @@ public class AccountService implements AccountDao {
 			FileInputStream fis = new FileInputStream(configLocation);
 			Properties props = new Properties();
 			props.load(fis);
-			conn = DriverManager.getConnection(props.getProperty("db_url",props.getProperty("db_user", props.getProperty("db_pass"))));
+			conn = DriverManager.getConnection(props.getProperty("db_url"),props.getProperty("db_user"), props.getProperty("db_pass"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -119,7 +120,7 @@ public class AccountService implements AccountDao {
 	public void removeBalance(User user, Account acc, double withdraw ) throws SQLException {
 		PreparedStatement pstmt = null;
 		String accNicname = acc.getActName();
-		String updateCommand = "UPDATE accounts " + "SET balance=? WHERE nicname=?";
+		String updateCommand = "UPDATE accounts SET balance=? WHERE nicname=?";
 		try {	
 			pstmt = connect().prepareStatement(updateCommand);
 			pstmt.setDouble(1, withdraw);
@@ -140,15 +141,18 @@ public class AccountService implements AccountDao {
 	
 	public ArrayList<Account> getAllAccts(User user) throws SQLException {
 		ArrayList<Account> accounts = new ArrayList<Account>();
-		String getAllAccts = "SELECT id,isapproved FROM accounts WHERE isapproved=false";
-		Statement stmt = null;
+		String getAllAccts = "SELECT accid,isapproved FROM accounts WHERE isapproved=? OR (isapproved IS NULL AND ? IS NULL)";
+		
+		PreparedStatement pstmt = null;
 		try {
-			stmt = connect().createStatement();
+			pstmt = connect().prepareStatement(getAllAccts);
+			pstmt.setNull(1, Types.BIT);
+			pstmt.setNull(2, Types.BIT);
 		} catch (FileNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ResultSet rs = stmt.executeQuery(getAllAccts);
+		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			Account userAcc = new Account(user.getId(), "placeholder");
 			userAcc.setActName(rs.getString("nicname"));
@@ -182,7 +186,8 @@ public class AccountService implements AccountDao {
 		User sender = transfer.getSender();
 		Account senderAcc = transfer.getSenderAcc();
 		if(senderAcc.getBalance() - amount > 0) {
-			removeBalance(sender,senderAcc,amount);
+			double result = senderAcc.getBalance() - amount;
+			removeBalance(sender,senderAcc,result);
 			addToTransferTable(transfer);
 			Printer.transferSend();
 			logger.info("funds transferred");
