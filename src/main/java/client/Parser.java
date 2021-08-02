@@ -183,16 +183,10 @@ public class Parser {
 			//ArrayList<User> users = us.get
 			ArrayList<Account> allAccs = as.getAllAccts(currentUser);
 			Printer.printAccountsForApproval(allAccs);
-			int h = Input.collectIntInput(sc);
+			int h = Input.collectIntInput(sc) - 1;
 			Account currentAcc = allAccs.get(h);
-			switch(h) {
-			case 1:
-				//Approve
-				es.approveAccount(currentAcc);
-				break;
-			case 2:
-				break; 
-			}
+			System.out.println(allAccs.get(h));
+			es.approveAccount(allAccs.get(h));			
 			break;
 		case 4:
 			// view all logs

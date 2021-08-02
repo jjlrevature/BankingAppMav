@@ -133,3 +133,203 @@
 2021-08-02 00:06:53,193 INFO s.UserService [main] Instantiation of initial variables.. complete.
 2021-08-02 00:06:56,683 INFO s.UserService [main] Employee attempted to login
 2021-08-02 00:06:56,683 INFO s.UserService [main] Displaying employee menu
+2021-08-02 07:14:01,547 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:14:13,062 INFO s.UserService [main] New User Created
+2021-08-02 07:14:57,637 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:15:03,793 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:15:03,793 INFO s.UserService [main] User attempted to login
+2021-08-02 07:15:03,793 INFO s.UserService [main] Displaying user menu
+2021-08-02 07:15:03,864 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:15:03,873 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:15:28,305 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:16:00,638 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:16:00,638 INFO s.UserService [main] User attempted to login
+2021-08-02 07:16:00,638 INFO s.UserService [main] Displaying user menu
+2021-08-02 07:16:00,703 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:16:00,870 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:16:01,030 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:16:54,666 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:16:54,823 INFO s.UserService [main] new account created
+2021-08-02 07:16:54,890 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:16:55,407 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:16:55,599 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:16:59,745 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:16:59,937 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:17:00,129 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:17:20,146 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:17:20,336 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:17:20,645 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:18:34,981 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:18:35,146 INFO s.UserService [main] balance removed from acc
+2021-08-02 07:18:35,146 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:18:35,178 INFO s.UserService [main] transfer added to transfer in database
+2021-08-02 07:18:35,178 INFO s.UserService [main] funds transferred
+2021-08-02 07:18:35,242 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:18:35,434 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:18:35,624 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:18:49,090 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:18:49,291 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:18:49,492 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:19:06,562 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:19:06,600 INFO s.UserService [main] balance added to account
+2021-08-02 07:19:06,600 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:19:06,630 INFO s.UserService [main] funds accepted into account
+2021-08-02 07:19:06,701 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:19:07,037 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:23:40,872 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:23:48,575 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:23:48,576 INFO s.UserService [main] User attempted to login
+2021-08-02 07:23:48,576 INFO s.UserService [main] Displaying user menu
+2021-08-02 07:23:48,638 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:23:48,972 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:23:49,168 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:23:51,375 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:23:51,577 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:23:51,775 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:24:09,814 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:24:19,341 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:24:19,341 INFO s.UserService [main] User attempted to login
+2021-08-02 07:24:19,341 INFO s.UserService [main] Displaying user menu
+2021-08-02 07:24:19,405 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:24:19,594 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:24:19,915 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:24:59,739 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:24:59,790 INFO s.UserService [main] balance removed from acc
+2021-08-02 07:24:59,790 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:24:59,822 INFO s.UserService [main] transfer added to transfer in database
+2021-08-02 07:24:59,822 INFO s.UserService [main] funds transferred
+2021-08-02 07:24:59,887 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:25:00,088 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:25:00,277 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:25:10,530 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:25:10,581 INFO s.UserService [main] balance added to account
+2021-08-02 07:25:10,581 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:25:10,613 INFO s.UserService [main] funds accepted into account
+2021-08-02 07:25:10,678 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:25:11,017 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:25:11,208 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:39:10,890 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:39:11,083 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:39:11,388 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:39:15,510 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:39:16,028 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:39:16,215 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:39:38,450 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:39:38,491 INFO s.UserService [main] balance added to account
+2021-08-02 07:39:38,667 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:39:38,969 INFO s.UserService [main] logged in user has checked for transfers
+2021-08-02 07:39:39,161 INFO s.UserService [main] built/returned arraylist of transfers
+2021-08-02 07:40:17,945 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:51:55,079 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:53:08,699 INFO s.UserService [main] Employee attempted to login
+2021-08-02 07:53:08,699 INFO s.UserService [main] Displaying employee menu
+2021-08-02 07:53:11,916 INFO s.UserService [main] got all Users
+2021-08-02 07:53:25,534 INFO s.UserService [main] user returned from getUser
+2021-08-02 07:54:16,073 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:54:20,604 INFO s.UserService [main] Employee attempted to login
+2021-08-02 07:54:20,604 INFO s.UserService [main] Displaying employee menu
+2021-08-02 07:54:23,985 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:58:08,241 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:58:11,218 INFO s.UserService [main] Employee attempted to login
+2021-08-02 07:58:11,218 INFO s.UserService [main] Displaying employee menu
+2021-08-02 07:58:12,545 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 07:58:49,671 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 07:58:52,163 INFO s.UserService [main] Employee attempted to login
+2021-08-02 07:58:52,163 INFO s.UserService [main] Displaying employee menu
+2021-08-02 07:58:53,826 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:00:23,803 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:00:26,548 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:00:26,549 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:00:28,170 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:00:28,305 INFO s.UserService [main] got all accounts
+2021-08-02 08:00:33,274 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:00:33,317 INFO s.UserService [main] account approved
+2021-08-02 08:01:43,669 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:01:48,619 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:01:48,619 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:01:51,514 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:01:51,640 INFO s.UserService [main] got all accounts
+2021-08-02 08:01:54,162 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:01:54,197 INFO s.UserService [main] account approved
+2021-08-02 08:06:11,905 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:06:15,827 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:06:15,828 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:06:17,666 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:06:17,810 INFO s.UserService [main] got all accounts
+2021-08-02 08:06:19,320 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:06:19,355 INFO s.UserService [main] account approved
+2021-08-02 08:07:09,341 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:07:12,098 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:07:12,098 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:07:13,386 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:07:13,516 INFO s.UserService [main] got all accounts
+2021-08-02 08:07:14,972 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:07:15,007 INFO s.UserService [main] account approved
+2021-08-02 08:08:05,552 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:08:09,115 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:08:09,115 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:08:10,378 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:08:10,504 INFO s.UserService [main] got all accounts
+2021-08-02 08:09:31,258 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:09:36,931 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:09:36,931 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:09:40,633 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:09:40,763 INFO s.UserService [main] got all accounts
+2021-08-02 08:09:43,018 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:09:43,068 INFO s.UserService [main] account approved
+2021-08-02 08:10:19,977 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:10:23,429 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:10:23,429 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:10:25,530 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:10:25,664 INFO s.UserService [main] got all accounts
+2021-08-02 08:11:30,092 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:11:33,981 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:11:33,982 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:11:36,202 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:11:36,327 INFO s.UserService [main] got all accounts
+2021-08-02 08:11:40,755 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:11:40,791 INFO s.UserService [main] account approved
+2021-08-02 08:13:48,676 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:13:51,995 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:13:51,996 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:13:54,985 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:13:55,108 INFO s.UserService [main] got all accounts
+2021-08-02 08:13:57,467 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:13:57,502 INFO s.UserService [main] account approved
+2021-08-02 08:15:21,949 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:15:24,987 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:15:24,987 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:15:27,753 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:15:27,877 INFO s.UserService [main] got all accounts
+2021-08-02 08:15:40,740 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:15:40,778 INFO s.UserService [main] account approved
+2021-08-02 08:37:38,795 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:37:42,674 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:37:42,674 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:37:45,530 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:37:45,684 INFO s.UserService [main] got all accounts
+2021-08-02 08:37:47,817 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:37:47,863 INFO s.UserService [main] account approved
+2021-08-02 08:38:31,516 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:38:34,402 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:38:34,403 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:38:36,217 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:38:36,346 INFO s.UserService [main] got all accounts
+2021-08-02 08:40:01,048 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:40:04,794 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:40:04,794 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:40:06,171 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:40:06,307 INFO s.UserService [main] got all accounts
+2021-08-02 08:40:07,836 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:40:07,884 INFO s.UserService [main] account approved
+2021-08-02 08:40:18,313 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:40:18,356 INFO s.UserService [main] got all accounts
+2021-08-02 08:41:27,599 INFO s.UserService [main] Instantiation of initial variables.. complete.
+2021-08-02 08:41:32,082 INFO s.UserService [main] Employee attempted to login
+2021-08-02 08:41:32,083 INFO s.UserService [main] Displaying employee menu
+2021-08-02 08:41:32,794 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:41:32,922 INFO s.UserService [main] got all accounts
+2021-08-02 08:41:34,147 INFO s.UserService [main] Connection method invoked from EmployeeService
+2021-08-02 08:41:34,189 INFO s.UserService [main] account approved
+2021-08-02 08:41:36,787 INFO s.UserService [main] Connection method invoked from AccountService
+2021-08-02 08:41:36,820 INFO s.UserService [main] got all accounts

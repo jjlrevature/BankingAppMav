@@ -55,6 +55,7 @@ public class Main {
 			User newUser = Parser.parseCreateUser(sc);
 			currentUser = newUser;
 			us.createUser(newUser);
+			i = 1;
 			break;
 		case 4:
 			b = false;

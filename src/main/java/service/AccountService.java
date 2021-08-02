@@ -93,6 +93,7 @@ public class AccountService implements AccountDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		pstmt.close();
 		logger.info("balance added to account");
 	}
 
@@ -114,6 +115,8 @@ public class AccountService implements AccountDao {
 			e.printStackTrace();
 		}
 		Account acc = new Account(user.getId(),nicname);
+		pstmt.close();
+		
 		return acc;
 	}
 	
@@ -132,6 +135,7 @@ public class AccountService implements AccountDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+		pstmt.close();
 		logger.info("balance removed from acc");		
 	}
 
@@ -141,7 +145,7 @@ public class AccountService implements AccountDao {
 	
 	public ArrayList<Account> getAllAccts(User user) throws SQLException {
 		ArrayList<Account> accounts = new ArrayList<Account>();
-		String getAllAccts = "SELECT accid,isapproved FROM accounts WHERE isapproved=? OR (isapproved IS NULL AND ? IS NULL)";
+		String getAllAccts = "SELECT accid,isapproved,accountowner,nicname,balance FROM accounts WHERE isapproved=? OR (isapproved IS NULL AND ? IS NULL)";
 		
 		PreparedStatement pstmt = null;
 		try {
@@ -154,12 +158,14 @@ public class AccountService implements AccountDao {
 		}
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			Account userAcc = new Account(user.getId(), "placeholder");
+			Account userAcc = new Account(rs.getInt("accountowner"), "placeholder");
 			userAcc.setActName(rs.getString("nicname"));
 			userAcc.setBalance(rs.getInt("balance"));
 			accounts.add(userAcc);
 		}
+		
 		logger.info("got all accounts");
+		pstmt.close();
 		return accounts;
 	}
 
@@ -171,6 +177,7 @@ public class AccountService implements AccountDao {
 			appAcc = connect().prepareStatement(action);
 			appAcc.setInt(1, accId);
 			logger.info("account approved");
+			appAcc.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -215,6 +222,7 @@ public class AccountService implements AccountDao {
 			}
 			update.setInt(1, tId);
 			update.executeUpdate();
+			update.close();
 		}
 	}
 	
@@ -232,6 +240,7 @@ public class AccountService implements AccountDao {
 			pstmt.setBoolean(4, false);
 			pstmt.executeUpdate();	
 			logger.info("transfer added to transfer in database");
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {

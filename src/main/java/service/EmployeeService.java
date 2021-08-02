@@ -51,6 +51,7 @@ public class EmployeeService implements EmployeeDao{
 		String findUserCommand = "SELECT id,username,password FROM users WHERE password=? AND username=?";
 		String findAccounts = "SELECT nicname,accountowner,balance FROM accounts INNER JOIN users ON accounts.accountowner = users.id";
 		PreparedStatement pstmt = null;
+		PreparedStatement pst = null;
 		try {
 			pstmt = connect().prepareStatement(findUserCommand);
 		} catch (FileNotFoundException | SQLException e1) {
@@ -58,7 +59,7 @@ public class EmployeeService implements EmployeeDao{
 			e1.printStackTrace();
 		}
 		try {
-			PreparedStatement pst = connect().prepareStatement(findAccounts);
+			pst = connect().prepareStatement(findAccounts);
 		} catch (FileNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -85,19 +86,27 @@ public class EmployeeService implements EmployeeDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		pstmt.close();
+		pst.close();
 		return currentEmp;
 	}
 	
 	public void approveAccount(Account acc) {
-		String approval = "UPDATE accounts SET isapproved=true WHERE accid=?";
+		String approval = "UPDATE accounts SET isapproved=? WHERE accid=? AND nicname=?";
 		PreparedStatement pstmt = null;
-		double accid = acc.getId();
+		
+		int accid = (int) acc.getId();
+		String nicname= acc.getActName();
+		System.out.println(acc.getAccountOwner());
 		try {
 			pstmt = connect().prepareStatement(approval);
-			pstmt.setDouble(1, accid);
+			pstmt.setBoolean(1, true);
+			pstmt.setInt(2, accid);
+			pstmt.setString(3, nicname);
+			pstmt.executeUpdate();
 			Printer.accountUpdated();
-			logger.info("account approved");			
+			logger.info("account approved");	
+			pstmt.close();
 		} catch (FileNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

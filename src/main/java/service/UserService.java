@@ -61,6 +61,7 @@ public class UserService implements UserDao {
 				e.printStackTrace();
 			}			
 			return conn;
+			
 		}	
 		
 		public void createUser(User user) throws SQLException {
@@ -74,6 +75,7 @@ public class UserService implements UserDao {
 				pstmt.setString(2, password);
 				pstmt.executeUpdate();
 				logger.info("New User Created");
+				pstmt.close();
 				Printer.userCreatedSuccesfully();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -101,6 +103,7 @@ public class UserService implements UserDao {
 				users.add(rs.getString("username"));
 			}
 			logger.info("got all Users");
+			conn.close();
 			return users;
 		}
 		
@@ -162,6 +165,8 @@ public class UserService implements UserDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			pstmt.close();
+			pst.close();
 			logger.info("user returned from getUser");
 			return currentUser;
 		}
@@ -183,7 +188,8 @@ public class UserService implements UserDao {
 				ResultSet rs = cT.executeQuery();			
 				while(rs.next()) {
 					b = true;
-				}			
+				}
+				cT.close();
 			}
 			logger.info("logged in user has checked for transfers");
 			return b;
@@ -212,6 +218,7 @@ public class UserService implements UserDao {
 							transfers.add(newTransfer);						
 						}
 				}
+				pending.close();
 			}
 			logger.info("built/returned arraylist of transfers");
 			return transfers;
